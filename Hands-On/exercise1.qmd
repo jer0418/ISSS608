@@ -1,0 +1,8 @@
+---
+title: "Hands-On Exercise_1"
+format: html
+---
+
+# Dashboard Design
+
+This exercise focuses on creating dashboards using R and Quarto.

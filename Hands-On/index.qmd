@@ -1,0 +1,9 @@
+---
+title: "Hands-On Exercises"
+---
+
+# Hands-On Exercises
+
+Welcome to the Hands-On Exercises section! Choose an exercise below:
+
+- [Exercise 1: Dashboard Design](exercise1.qmd)
