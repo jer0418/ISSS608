@@ -5,18 +5,19 @@ website:
   title: "ISSS608"
   navbar:
     left:
+      - text: "Hands-on Exercises"
+        menu:
+          - text: "Hands-on Exercise 1" 
+            href: "Hands-on_ex/Hands-on_Ex01/Hands-on_Ex01.html"
+        
+    right:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: About
-      - text: "Hands-on Exercises"
-        href: Hands-On/index.qmd
+      - about.qmd
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: spacelab
     css: styles.css
     toc: true
 
