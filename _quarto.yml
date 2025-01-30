@@ -13,6 +13,12 @@ website:
           - text: "Hands-on Exercise 2" 
             href: "Hands-on_ex/Hands-on_Ex02/Hands-on_Ex02.html"
             
+          - text: "Hands-on Exercise 3" 
+            href: "Hands-on_ex/Hands-on_Ex03/Hands-on_Ex03.html"
+            
+          - text: "Hands-on Exercise 4" 
+            href: "Hands-on_ex/Hands-on_Ex04/Hands-on_Ex04.html"
+            
       - text: "In-Class Exercises"
         menu:
           - text: "In-Class Exercise 1" 
@@ -33,5 +39,7 @@ format:
     theme: spacelab
     css: styles.css
     toc: true
+    execute:
+      warning: false
 
 editor: visual
