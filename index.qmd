@@ -4,4 +4,4 @@ title: "ISSS608"
 
 Welcome to **ISSS608 Visual Analytics and Applications**. This website is for Jeremy Junpeng Liu's coursework.
 
-![](images/Nohair.png){width="464"}
+![](images/Nohair.png){width="461"}
