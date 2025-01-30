@@ -3,3 +3,7 @@ title: "About"
 ---
 
 Hi there! thank you for visiting my page. This is **Jeremy Junpeng Liu** where l detail my journey through <isss608> Visual Analytics and Applications as part of my Master of IT in Business programme at Singapore Management University. I hope your journey is as fulfilling as mine! Special thanks to Prof. Kam Tin seong for his dedication, patience, and generosity in sharing his knowledge.
+
+![](images/Aboutme-Jeremy.jpg){width="233"}
+
+![](images/xxd.jpg){fig-align="center" width="231"}
