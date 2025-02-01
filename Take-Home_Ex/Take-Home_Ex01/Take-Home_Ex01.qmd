@@ -3,6 +3,11 @@ title: "Take-home_Ex01"
 author: "Jeremy Junpeng Liu"
 date: "February 1,2025"
 date-modified: "last-modified"
+execute:
+  echo: true
+  eval: true
+  warning: false
+  freeze: true
 ---
 
 ## hihi
