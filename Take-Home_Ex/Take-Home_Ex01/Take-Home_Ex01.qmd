@@ -10,4 +10,53 @@ execute:
   freeze: true
 ---
 
-## hihi
+# Japan Heart Attack
+
+## About Dataset
+
+This dataset offers an in-depth exploration of heart attack incidents in Japan, focusing on the differences between youth and adult age groups. With the growing prevalence of cardiovascular diseases worldwide, this dataset provides critical insights into the health profiles, risk factors, and potential triggers associated with heart attacks among two distinct demographics.
+
+## Goal
+
+-   An international media company that publishes weekly content on digital platforms is planning to release articles on the following themes.
+
+-   Assuming the role of the graphical editor of the media company, you are tasked to choose one of the theme above and to prepare data visualisation for the article.
+
+## 1 Getting Started
+
+### 1.1 Access to library
+
+First, write a code chunk to check, install and launch the following R packages:
+
+-   [**ggiraph**](https://davidgohel.github.io/ggiraph/) for making ‘ggplot’ graphics interactive.
+
+-   [**tidyverse**](https://www.tidyverse.org/), a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs.
+
+The code chunk below will be used to accomplish the task.
+
+### 1.2 Importing the Dataset
+
+First by importing the Japan_heart_attack_data set.csv to "Japan"
+
+Using the read.csv(path) would allow me to do so.
+
+```{r}
+japan <- read.csv("data/japan_heart_attack_dataset.csv")
+japan
+```
+
+```{r}
+{r,echo=FALSE}
+ggplot(data=japan, 
+       aes(x= Age, 
+           y=Smoking_history)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  geom_label(aes(label = ID), 
+             hjust = .5, 
+             vjust = -.5) +
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100)) +
+  ggtitle("Smoking history based on Age")
+```
