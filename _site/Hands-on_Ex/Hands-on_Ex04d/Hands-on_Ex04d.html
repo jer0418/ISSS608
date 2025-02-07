@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -147,6 +113,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04a/Hands-on_Ex04a.html">
  <span class="dropdown-text">Hands-on Exercise 4a</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04b/Hands-on_Ex04b.html">
+ <span class="dropdown-text">Hands-on Exercise 4b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04c/Hands-on_Ex04c.html">
+ <span class="dropdown-text">Hands-on Exercise 4c</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04d/Hands-on_Ex04d.html">
+ <span class="dropdown-text">Hands-on Exercise 4d</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -197,8 +175,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#funnel-plots-for-fair-comparisons" id="toc-funnel-plots-for-fair-comparisons" class="nav-link active" data-scroll-target="#funnel-plots-for-fair-comparisons"><strong>12&nbsp; Funnel Plots for Fair Comparisons</strong></a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><strong>12.1 Overview</strong></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,28 +205,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="funnel-plots-for-fair-comparisons" class="level1">
+<h1><strong>12&nbsp; Funnel Plots for Fair Comparisons</strong></h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview"><strong>12.1 Overview</strong></h2>
+<p>Funnel plot is a specially designed data visualisation for conducting unbiased comparison between outlets, stores or business entities. By the end of this hands-on exercise, you will gain hands-on experience on:</p>
+<ul>
+<li><p>plotting funnel plots by using <strong>funnelPlotR</strong> package,</p></li>
+<li><p>plotting static funnel plot by using ggplot2 package, and</p></li>
+<li><p>plotting interactive funnel plot by using both <strong>plotly R</strong> and <strong>ggplot2</strong> packages.</p></li>
+</ul>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

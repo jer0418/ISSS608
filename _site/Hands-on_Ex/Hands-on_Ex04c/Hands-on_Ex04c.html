@@ -147,6 +147,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04a/Hands-on_Ex04a.html">
  <span class="dropdown-text">Hands-on Exercise 4a</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04b/Hands-on_Ex04b.html">
+ <span class="dropdown-text">Hands-on Exercise 4b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04c/Hands-on_Ex04c.html">
+ <span class="dropdown-text">Hands-on Exercise 4c</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04d/Hands-on_Ex04d.html">
+ <span class="dropdown-text">Hands-on Exercise 4d</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -197,8 +209,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#visualising-uncertainty" id="toc-visualising-uncertainty" class="nav-link active" data-scroll-target="#visualising-uncertainty"><strong>11&nbsp; Visualising Uncertainty</strong></a>
+  <ul class="collapse">
+  <li><a href="#learning-outcome" id="toc-learning-outcome" class="nav-link" data-scroll-target="#learning-outcome"><strong>11.1 Learning Outcome</strong></a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><strong>11.2 Getting Started</strong></a></li>
+  <li><a href="#visualizing-the-uncertainty-of-point-estimates-ggplot2-methods" id="toc-visualizing-the-uncertainty-of-point-estimates-ggplot2-methods" class="nav-link" data-scroll-target="#visualizing-the-uncertainty-of-point-estimates-ggplot2-methods"><strong>11.3 Visualizing the uncertainty of point estimates: ggplot2 methods</strong></a>
+  <ul class="collapse">
+  <li><a href="#plotting-standard-error-bars-of-point-estimates" id="toc-plotting-standard-error-bars-of-point-estimates" class="nav-link" data-scroll-target="#plotting-standard-error-bars-of-point-estimates"><strong>11.3.1 Plotting standard error bars of point estimates</strong></a></li>
+  <li><a href="#plotting-confidence-interval-of-point-estimates" id="toc-plotting-confidence-interval-of-point-estimates" class="nav-link" data-scroll-target="#plotting-confidence-interval-of-point-estimates"><strong>11.3.2 Plotting confidence interval of point estimates</strong></a></li>
+  <li><a href="#visualizing-the-uncertainty-of-point-estimates-with-interactive-error-bars" id="toc-visualizing-the-uncertainty-of-point-estimates-with-interactive-error-bars" class="nav-link" data-scroll-target="#visualizing-the-uncertainty-of-point-estimates-with-interactive-error-bars"><strong>11.3.3 Visualizing the uncertainty of point estimates with interactive error bars</strong></a></li>
+  </ul></li>
+  <li><a href="#visualising-uncertainty-ggdist-package" id="toc-visualising-uncertainty-ggdist-package" class="nav-link" data-scroll-target="#visualising-uncertainty-ggdist-package"><strong>11.4&nbsp;Visualising Uncertainty:&nbsp;ggdist&nbsp;package</strong></a>
+  <ul class="collapse">
+  <li><a href="#visualizing-the-uncertainty-of-point-estimates-ggdist-methods" id="toc-visualizing-the-uncertainty-of-point-estimates-ggdist-methods" class="nav-link" data-scroll-target="#visualizing-the-uncertainty-of-point-estimates-ggdist-methods"><strong>11.4.1 Visualizing the uncertainty of point estimates: ggdist methods</strong></a></li>
+  <li><a href="#visualizing-the-uncertainty-of-point-estimates-ggdist-methods-1" id="toc-visualizing-the-uncertainty-of-point-estimates-ggdist-methods-1" class="nav-link" data-scroll-target="#visualizing-the-uncertainty-of-point-estimates-ggdist-methods-1"><strong>11.4.2 Visualizing the uncertainty of point estimates: ggdist methods</strong></a></li>
+  <li><a href="#visualizing-the-uncertainty-of-point-estimates-ggdist-methods-2" id="toc-visualizing-the-uncertainty-of-point-estimates-ggdist-methods-2" class="nav-link" data-scroll-target="#visualizing-the-uncertainty-of-point-estimates-ggdist-methods-2"><strong>11.4.3 Visualizing the uncertainty of point estimates: ggdist methods</strong></a></li>
+  </ul></li>
+  <li><a href="#visualising-uncertainty-with-hypothetical-outcome-plots-hops" id="toc-visualising-uncertainty-with-hypothetical-outcome-plots-hops" class="nav-link" data-scroll-target="#visualising-uncertainty-with-hypothetical-outcome-plots-hops"><strong>11.5 Visualising Uncertainty with Hypothetical Outcome Plots (HOPs)</strong></a>
+  <ul class="collapse">
+  <li><a href="#visualising-uncertainty-with-hypothetical-outcome-plots-hops-1" id="toc-visualising-uncertainty-with-hypothetical-outcome-plots-hops-1" class="nav-link" data-scroll-target="#visualising-uncertainty-with-hypothetical-outcome-plots-hops-1"><strong>11.5.3 Visualising Uncertainty with Hypothetical Outcome Plots (HOPs)</strong></a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,28 +255,433 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="visualising-uncertainty" class="level1">
+<h1><strong>11&nbsp; Visualising Uncertainty</strong></h1>
+<section id="learning-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcome"><strong>11.1 Learning Outcome</strong></h2>
+<p>Visualising uncertainty is relatively new in statistical graphics. In this chapter, i will gain hands-on experience on creating statistical graphics for visualising uncertainty. By the end of this chapter you will be able:</p>
+<ul>
+<li><p>to plot statistics error bars by using ggplot2,</p></li>
+<li><p>to plot interactive error bars by combining ggplot2, plotly and DT,</p></li>
+<li><p>to create advanced by using ggdist, and</p></li>
+<li><p>to create hypothetical outcome plots (HOPs) by using ungeviz package.</p></li>
+</ul>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started"><strong>11.2 Getting Started</strong></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Installing and loading libraries</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Loading the Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ungeviz, plotly, crosstalk,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               DT, ggdist, ggridges,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               colorspace, gganimate, tidyverse,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               ggiraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/Exam_data.csv'</span>,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</div>
+</div>
+</section>
+<section id="visualizing-the-uncertainty-of-point-estimates-ggplot2-methods" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-the-uncertainty-of-point-estimates-ggplot2-methods"><strong>11.3 Visualizing the uncertainty of point estimates: ggplot2 methods</strong></h2>
+<p>A point estimate is a single number, such as a mean. Uncertainty, on the other hand, is expressed as standard error, confidence interval, or credible interval.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Standard Error vs.&nbsp;Standard Deviation</strong>: SE measures uncertainty in the estimate, while SD measures variability in the sample.</p></li>
+<li><p><strong>Confidence Intervals</strong>: Use CI=xˉ±1.96×SE = {x} SECI=xˉ±1.96×SE for a 95% confidence interval.</p></li>
+<li><p><strong>Choosing the Right Visualization</strong>: Use <code>geom_errorbar()</code> for error bars and <code>geom_ribbon()</code> for shaded confidence intervals.</p></li>
+</ul>
+</div>
+</div>
+<p>In this section, i will learn how to plot error bars of maths scores by race by using data provided in <em>exam</em> tibble data frame.</p>
+<p>Firstly, code chunk below will be used to derive the necessary summary statistics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_sum <span class="ot">&lt;-</span> exam <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(RACE) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>( <span class="at">n=</span><span class="fu">n</span>(), <span class="at">mean=</span><span class="fu">mean</span>(MATHS), <span class="at">sd=</span><span class="fu">sd</span>(MATHS) ) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n<span class="dv">-1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Things to learn from the code chunk above</strong></p>
+<ul>
+<li><p><code>group_by()</code> of <strong>dplyr</strong> package is used to group the observation by RACE,</p></li>
+<li><p><code>summarise()</code> is used to compute the count of observations, mean, standard deviation</p></li>
+<li><p><code>mutate()</code> is used to derive standard error of Maths by RACE, and</p></li>
+<li><p>the output is save as a tibble data table called <em>my_sum</em>.</p></li>
+</ul>
+</div>
+</div>
+<p>Next, the code chunk below will be used to display&nbsp;<em>my_sum</em>&nbsp;tibble data frame in an html table format.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">The Code Chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">The Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(my_sum), <span class="at">format =</span> <span class="st">'html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">RACE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Chinese</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">76.50777</td>
+<td style="text-align: right;">15.69040</td>
+<td style="text-align: right;">1.132357</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Indian</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">60.66667</td>
+<td style="text-align: right;">23.35237</td>
+<td style="text-align: right;">7.041005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Malay</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">57.44444</td>
+<td style="text-align: right;">21.13478</td>
+<td style="text-align: right;">2.043177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Others</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">69.66667</td>
+<td style="text-align: right;">10.72381</td>
+<td style="text-align: right;">3.791438</td>
+</tr>
+</tbody>
+</table>
 
 
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="plotting-standard-error-bars-of-point-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-standard-error-bars-of-point-estimates"><strong>11.3.1 Plotting standard error bars of point estimates</strong></h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">The plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">The code Chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_sum) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>RACE, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymin=</span>mean<span class="sc">-</span>se, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymax=</span>mean<span class="sc">+</span>se), </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">width=</span><span class="fl">0.2</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour=</span><span class="st">"black"</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha=</span><span class="fl">0.9</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(aes</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>           (<span class="at">x=</span>RACE, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">y=</span>mean), </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat=</span><span class="st">"identity"</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"red"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="fl">1.5</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Standard error of mean maths score by rac"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>This chart displays the standard error bars of the mean math scores for different races (Chinese, Indian, Malay, Others), with the error bars representing the uncertainty range of the estimated mean.</p>
+</section>
+<section id="plotting-confidence-interval-of-point-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-confidence-interval-of-point-estimates"><strong>11.3.2 Plotting confidence interval of point estimates</strong></h3>
+<p>Instead of plotting the standard error bar of point estimates, we can also plot the confidence intervals of mean maths score by race.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">The Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">The Code Chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_sum) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(RACE, <span class="sc">-</span>mean), </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymin=</span>mean<span class="fl">-1.96</span><span class="sc">*</span>se, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymax=</span>mean<span class="fl">+1.96</span><span class="sc">*</span>se), </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">width=</span><span class="fl">0.2</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour=</span><span class="st">"black"</span>, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha=</span><span class="fl">0.9</span>, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(aes</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>           (<span class="at">x=</span>RACE, </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">y=</span>mean), </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat=</span><span class="st">"identity"</span>, </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"red"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="fl">1.5</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Maths score"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"95% confidence interval of mean maths score by race"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><br>
+Things to learn from the code chunk above</strong></p>
+<ul>
+<li><p>The confidence intervals are computed by using the formula mean+/-1.96*se.</p></li>
+<li><p>The error bars is sorted by using the average maths scores.</p></li>
+<li><p><code>labs()</code> argument of ggplot2 is used to change the x-axis label.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="visualizing-the-uncertainty-of-point-estimates-with-interactive-error-bars" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-uncertainty-of-point-estimates-with-interactive-error-bars"><strong>11.3.3 Visualizing the uncertainty of point estimates with interactive error bars</strong></h3>
+<p>In this section, i have learn how to plot interactive error bars for the 99% confidence interval of mean maths score by race as shown in the figure below.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">The Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">The Code Chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From this chart, I learned how to visualize the uncertainty of point estimates using interactive error bars, specifically by plotting the 99% confidence interval for the mean math scores of different races. The error bars indicate the range in which the true mean is likely to fall, showing the variability in scores among different groups.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="visualising-uncertainty-ggdist-package" class="level2">
+<h2 class="anchored" data-anchor-id="visualising-uncertainty-ggdist-package"><strong>11.4&nbsp;Visualising Uncertainty:&nbsp;ggdist&nbsp;package</strong></h2>
+<ul>
+<li><p><a href="https://mjskay.github.io/ggdist/index.html"><strong>ggdist</strong></a> is an R package that provides a flexible set of ggplot2 geoms and stats designed especially for visualising distributions and uncertainty.</p></li>
+<li><p>It is designed for both frequentist and Bayesian uncertainty visualization, taking the view that uncertainty visualization can be unified through the perspective of distribution visualization:</p>
+<ul>
+<li><p>for frequentist models, one visualises confidence distributions or bootstrap distributions (see vignette(“freq-uncertainty-vis”));</p></li>
+<li><p>for Bayesian models, one visualises probability distributions (see the tidybayes package, which builds on top of ggdist).</p></li>
+</ul></li>
+</ul>
+<section id="visualizing-the-uncertainty-of-point-estimates-ggdist-methods" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-uncertainty-of-point-estimates-ggdist-methods"><strong>11.4.1 Visualizing the uncertainty of point estimates: ggdist methods</strong></h3>
+<p>In the code chunk below, <a href="https://mjskay.github.io/ggdist/reference/stat_pointinterval.html"><code>stat_pointinterval()</code></a> of <strong>ggdist</strong> is used to build a visual for displaying distribution of maths scores by race.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>exam <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> RACE, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_pointinterval</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Visualising confidence intervals of mean math score"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Mean Point + Multiple-interval plot"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This function comes with many arguments, students are advised to read the syntax reference for more detail.</p>
+</div>
+</div>
+<p>For example, in the code chunk below the following arguments are used:</p>
+<ul>
+<li><p>.width = 0.95</p></li>
+<li><p>.point = median</p></li>
+<li><p>.interval = qi</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>exam <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> RACE, <span class="at">y =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_pointinterval</span>(<span class="at">.width =</span> <span class="fl">0.95</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">.point =</span> median,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">.interval =</span> qi) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Visualising confidence intervals of median math score"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Median Point + Multiple-interval plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-the-uncertainty-of-point-estimates-ggdist-methods-1" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-uncertainty-of-point-estimates-ggdist-methods-1"><strong>11.4.2 Visualizing the uncertainty of point estimates: ggdist methods</strong></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>exam <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> RACE, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_pointinterval</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span>   </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Visualising confidence intervals of mean math score"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Mean Point + Multiple-interval plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Gentle advice: This function comes with many arguments, students are advised to read the syntax reference for more detail.</p>
+</section>
+<section id="visualizing-the-uncertainty-of-point-estimates-ggdist-methods-2" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-uncertainty-of-point-estimates-ggdist-methods-2"><strong>11.4.3 Visualizing the uncertainty of point estimates: ggdist methods</strong></h3>
+<p>In the code chunk below, <a href="https://mjskay.github.io/ggdist/reference/stat_gradientinterval.html"><code>stat_gradientinterval()</code></a> of <strong>ggdist</strong> is used to build a visual for displaying distribution of maths scores by race.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>exam <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> RACE, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_gradientinterval</span>(   </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,      </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">TRUE</span>     </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span>                        </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Visualising confidence intervals of mean math score"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Gradient + interval plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Gentle advice: This function comes with many arguments, students are advised to read the syntax reference for more detail.</p>
+</section>
+</section>
+<section id="visualising-uncertainty-with-hypothetical-outcome-plots-hops" class="level2">
+<h2 class="anchored" data-anchor-id="visualising-uncertainty-with-hypothetical-outcome-plots-hops"><strong>11.5 Visualising Uncertainty with Hypothetical Outcome Plots (HOPs)</strong></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Install package</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Launch application in R</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"wilkelab/ungeviz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ungeviz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<section id="visualising-uncertainty-with-hypothetical-outcome-plots-hops-1" class="level3">
+<h3 class="anchored" data-anchor-id="visualising-uncertainty-with-hypothetical-outcome-plots-hops-1"><strong>11.5.3 Visualising Uncertainty with Hypothetical Outcome Plots (HOPs)</strong></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> exam, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>       (<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(RACE), </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> MATHS))) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fl">0.3</span>, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.05</span>), </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">0.4</span>, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#0072B2"</span>, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hpline</span>(<span class="at">data =</span> <span class="fu">sampler</span>(<span class="dv">25</span>, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                             <span class="at">group =</span> RACE), </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="fl">0.6</span>, </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"#D55E00"</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(.draw, <span class="dv">1</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex04c_files/figure-html/unnamed-chunk-18-1.gif" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

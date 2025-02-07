@@ -147,6 +147,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04a/Hands-on_Ex04a.html">
  <span class="dropdown-text">Hands-on Exercise 4a</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04b/Hands-on_Ex04b.html">
+ <span class="dropdown-text">Hands-on Exercise 4b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04c/Hands-on_Ex04c.html">
+ <span class="dropdown-text">Hands-on Exercise 4c</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_ex/Hands-on_Ex04d/Hands-on_Ex04d.html">
+ <span class="dropdown-text">Hands-on Exercise 4d</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -248,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="learning-outcome" class="level1">
 <h1><strong>1 Learning Outcome</strong></h1>
-<p>Visualising distribution is not new in statistical analysis. In chapter 1 we have shared with you some of the popular statistical graphics methods for visualising distribution are histogram, probability density curve (pdf), boxplot, notch plot and violin plot and how they can be created by using ggplot2. In this chapter, we are going to share with you two relatively new statistical graphic methods for visualising distribution, namely ridgeline plot and raincloud plot by using ggplot2 and its extensions.</p>
+<p>Visualising distribution is not new in statistical analysis. In chapter 1 we have shared some of the popular statistical graphics methods for visualising distribution are histogram, probability density curve (pdf), boxplot, notch plot and violin plot and how they can be created by using ggplot2. In this chapter, we are going to share two relatively new statistical graphic methods for visualising distribution, namely ridgeline plot and raincloud plot by using ggplot2 and its extensions.</p>
 </section>
 <section id="getting-started" class="level1">
 <h1><strong>2 Getting Started</strong></h1>
@@ -283,14 +295,14 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Ridgeline plots make sense when the number of group to represent is medium to high, and thus a classic window separation would take to much space. Indeed, the fact that groups overlap each other allows to use space more efficiently. If you have less than 5 groups, dealing with other distribution plots is probably better.</p></li>
+<li><p>Ridgeline plots make sense when the number of group to represent is medium to high, and thus a classic window separation would take to much space. Indeed, the fact that groups overlap each other allows to use space more efficiently. If less than 5 groups, dealing with other distribution plots is probably better.</p></li>
 <li><p>It works well when there is a clear pattern in the result, like if there is an obvious ranking in groups. Otherwise group will tend to overlap each other, leading to a messy plot not providing any insight.</p></li>
 </ul>
 </div>
 </div>
 <section id="plotting-ridgeline-graph-ggridges-method" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-ridgeline-graph-ggridges-method"><strong>3.1 Plotting ridgeline graph: ggridges method</strong></h2>
-<p>There are several ways to plot ridgeline plot with R. In this section, you will learn how to plot ridgeline plot by using <a href="https://wilkelab.org/ggridges/index.html">ggridges</a> package.</p>
+<p>There are several ways to plot ridgeline plot with R. In this section, i will learn how to plot ridgeline plot by using <a href="https://wilkelab.org/ggridges/index.html">ggridges</a> package.</p>
 <p>ggridges package provides two main geom to plot gridgeline plots, they are: <a href="https://wilkelab.org/ggridges/reference/geom_ridgeline.html"><code>geom_ridgeline()</code></a> and <a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html"><code>geom_density_ridges()</code></a>. The former takes height values directly to draw the ridgelines, and the latter first estimates data densities and then draws those using ridgelines.</p>
 <p>The ridgeline plot below is plotted by using <code>geom_density_ridges()</code>.</p>
 <section id="geom_density_ridges" class="level3">
@@ -557,7 +569,7 @@ Tip
 <section id="visualizing-distribution-with-raincloud-plot" class="level1">
 <h1><strong>4 Visualizing Distribution with Raincloud Plot</strong></h1>
 <p>Raincloud Plot is a data visualisation techniques that produces a half-density to a distribution plot. It gets the name because the density plot is in the shape of a “raincloud”. The raincloud (half-density) plot enhances the traditional box-plot by highlighting multiple modalities (an indicator that groups may exist). The boxplot does not show where densities are clustered, but the raincloud plot does!</p>
-<p>In this section, you will learn how to create a raincloud plot to visualise the distribution of English score by race. It will be created by using functions provided by <strong>ggdist</strong> and ggplot2 packages.</p>
+<p>In this section, i will learn how to create a raincloud plot to visualise the distribution of English score by race. It will be created by using functions provided by <strong>ggdist</strong> and ggplot2 packages.</p>
 <section id="plotting-a-half-eye-graph" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-a-half-eye-graph"><strong>4.1 Plotting a Half Eye graph</strong></h2>
 <p>First, we will plot a Half-Eye graph by using <a href="https://mjskay.github.io/ggdist/reference/stat_halfeye.html"><code>stat_halfeye()</code></a> of <strong>ggdist</strong> package.</p>
