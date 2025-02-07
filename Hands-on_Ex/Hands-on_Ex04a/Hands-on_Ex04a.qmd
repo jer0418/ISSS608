@@ -6,7 +6,7 @@ editor: visual
 
 # **1 Learning Outcome**
 
-Visualising distribution is not new in statistical analysis. In chapter 1 we have shared with you some of the popular statistical graphics methods for visualising distribution are histogram, probability density curve (pdf), boxplot, notch plot and violin plot and how they can be created by using ggplot2. In this chapter, we are going to share with you two relatively new statistical graphic methods for visualising distribution, namely ridgeline plot and raincloud plot by using ggplot2 and its extensions.
+Visualising distribution is not new in statistical analysis. In chapter 1 we have shared some of the popular statistical graphics methods for visualising distribution are histogram, probability density curve (pdf), boxplot, notch plot and violin plot and how they can be created by using ggplot2. In this chapter, we are going to share two relatively new statistical graphic methods for visualising distribution, namely ridgeline plot and raincloud plot by using ggplot2 and its extensions.
 
 # **2 Getting Started**
 
@@ -14,6 +14,7 @@ Visualising distribution is not new in statistical analysis. In chapter 1 we hav
 ## Installing and loading the packages
 
 ```{r}
+#| warning: false
 pacman::p_load(ggdist, ggridges, ggthemes,
                colorspace, tidyverse)
 ```
@@ -30,14 +31,14 @@ exam <- read.csv("data/Exam_data.csv")
 Ridgeline plot (sometimes called Joyplot) is a data visualisation technique for revealing the distribution of a numeric value for several groups. Distribution can be represented using histograms or density plots, all aligned to the same horizontal scale and presented with a slight overlap.
 
 ::: callout-note
--   Ridgeline plots make sense when the number of group to represent is medium to high, and thus a classic window separation would take to much space. Indeed, the fact that groups overlap each other allows to use space more efficiently. If you have less than 5 groups, dealing with other distribution plots is probably better.
+-   Ridgeline plots make sense when the number of group to represent is medium to high, and thus a classic window separation would take to much space. Indeed, the fact that groups overlap each other allows to use space more efficiently. If less than 5 groups, dealing with other distribution plots is probably better.
 
 -   It works well when there is a clear pattern in the result, like if there is an obvious ranking in groups. Otherwise group will tend to overlap each other, leading to a messy plot not providing any insight.
 :::
 
 ## **3.1 Plotting ridgeline graph: ggridges method**
 
-There are several ways to plot ridgeline plot with R. In this section, you will learn how to plot ridgeline plot by using [ggridges](https://wilkelab.org/ggridges/index.html) package.
+There are several ways to plot ridgeline plot with R. In this section, i will learn how to plot ridgeline plot by using [ggridges](https://wilkelab.org/ggridges/index.html) package.
 
 ggridges package provides two main geom to plot gridgeline plots, they are: [`geom_ridgeline()`](https://wilkelab.org/ggridges/reference/geom_ridgeline.html) and [`geom_density_ridges()`](https://wilkelab.org/ggridges/reference/geom_density_ridges.html). The former takes height values directly to draw the ridgelines, and the latter first estimates data densities and then draws those using ridgelines.
 
@@ -307,7 +308,7 @@ ggplot(exam,
 
 Raincloud Plot is a data visualisation techniques that produces a half-density to a distribution plot. It gets the name because the density plot is in the shape of a “raincloud”. The raincloud (half-density) plot enhances the traditional box-plot by highlighting multiple modalities (an indicator that groups may exist). The boxplot does not show where densities are clustered, but the raincloud plot does!
 
-In this section, you will learn how to create a raincloud plot to visualise the distribution of English score by race. It will be created by using functions provided by **ggdist** and ggplot2 packages.
+In this section, i will learn how to create a raincloud plot to visualise the distribution of English score by race. It will be created by using functions provided by **ggdist** and ggplot2 packages.
 
 ## **4.1 Plotting a Half Eye graph**
 

@@ -20,7 +20,7 @@ This dataset offers an in-depth exploration of heart attack incidents in Japan, 
 
 -   An international media company that publishes weekly content on digital platforms is planning to release articles on the following themes.
 
--   Assuming the role of the graphical editor of the media company, you are tasked to choose one of the theme above and to prepare data visualisation for the article.
+-   Assuming the role of the graphical editor of the media company, i am tasked to choose one of the theme above and to prepare data visualisation for the article.
 
 ## 1 Getting Started
 

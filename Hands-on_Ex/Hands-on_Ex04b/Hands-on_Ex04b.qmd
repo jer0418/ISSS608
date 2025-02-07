@@ -172,7 +172,7 @@ ggbarstats(exam1,
 ```
 
 ::: callout-tip
--   **No significant association** between gender and Maths score categories (χ2=1.04,p=0.79\chi^2 = 1.04, p = 0.79χ2=1.04,p=0.79).
+-   **No significant association** between gender and Maths score categories (χ2=1.04,p=0.79\chi\^2 = 1.04, p = 0.79χ2=1.04,p=0.79).
 
 -   **Similar proportions** of Maths scores across genders.
 
