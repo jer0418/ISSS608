@@ -8,7 +8,7 @@ title: "In-Class_Ex04"
 
 ```{r}
 #| warning: false
-pacman::p_load(haven,SmartEDA,tidyverse,tidymodels)
+pacman::p_load(haven,SmartEDA,tidyverse,tidymodels,ggdist,ggplot2)
 ```
 
 ```{r}
