@@ -47,7 +47,7 @@ dots plot provides a detail
 
 
 
-
+"bayes" statistics not using 1 cup of point but using a range.
 
 
 ```{r}
