@@ -4,11 +4,6 @@ format: html
 author: "Jeremy Junpeng Liu"
 date: "February 1,2025"
 date-modified: "last-modified"
-execute:
-  echo: true
-  eval: true
-  warning: false
-  freeze: true
 ---
 
 # Japan Heart Attack
@@ -44,20 +39,4 @@ Using the read.csv(path) would allow me to do so.
 ```{r}
 japan <- read.csv("data/japan_heart_attack_dataset.csv")
 japan
-```
-
-```{r}
-{r,echo=FALSE}
-ggplot(data=japan, 
-       aes(x= Age, 
-           y=Smoking_history)) +
-  geom_point() +
-  geom_smooth(method=lm, 
-              size=0.5) +  
-  geom_label(aes(label = ID), 
-             hjust = .5, 
-             vjust = -.5) +
-  coord_cartesian(xlim=c(0,100),
-                  ylim=c(0,100)) +
-  ggtitle("Smoking history based on Age")
 ```
