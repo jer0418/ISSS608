@@ -194,6 +194,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../In-Class_ex/In-Class_Ex04/In-Class_Ex04.html">
  <span class="dropdown-text">In-Class Exercise 4</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_ex/In-Class_Ex05/In-Class_Ex05.html">
+ <span class="dropdown-text">In-Class Exercise 5</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -439,6 +443,90 @@ $ Tow_Bar          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 11   %. of variables having &gt;0% and &lt;50% missing cases    0% (0)
 12 %. of variables having &gt;=50% and &lt;90% missing cases    0% (0)
 13          %. of variables having &gt;=90% missing cases    0% (0)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>car_resale <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ExpData</span>(<span class="at">type =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Index    Variable_Name Variable_Type Sample_n Missing_Count Per_of_Missing
+1      1               Id       numeric     1436             0              0
+2      2            Model     character     1436             0              0
+3      3            Price       numeric     1436             0              0
+4      4        Age_08_04       numeric     1436             0              0
+5      5        Mfg_Month       numeric     1436             0              0
+6      6         Mfg_Year       numeric     1436             0              0
+7      7               KM       numeric     1436             0              0
+8      8    Quarterly_Tax       numeric     1436             0              0
+9      9           Weight       numeric     1436             0              0
+10    10 Guarantee_Period       numeric     1436             0              0
+11    11           HP_Bin     character     1436             0              0
+12    12           CC_bin     character     1436             0              0
+13    13            Doors       numeric     1436             0              0
+14    14            Gears       numeric     1436             0              0
+15    15        Cylinders       numeric     1436             0              0
+16    16        Fuel_Type     character     1436             0              0
+17    17            Color     character     1436             0              0
+18    18        Met_Color       numeric     1436             0              0
+19    19        Automatic       numeric     1436             0              0
+20    20    Mfr_Guarantee       numeric     1436             0              0
+21    21  BOVAG_Guarantee       numeric     1436             0              0
+22    22              ABS       numeric     1436             0              0
+23    23         Airbag_1       numeric     1436             0              0
+24    24         Airbag_2       numeric     1436             0              0
+25    25            Airco       numeric     1436             0              0
+26    26  Automatic_airco       numeric     1436             0              0
+27    27    Boardcomputer       numeric     1436             0              0
+28    28        CD_Player       numeric     1436             0              0
+29    29     Central_Lock       numeric     1436             0              0
+30    30  Powered_Windows       numeric     1436             0              0
+31    31   Power_Steering       numeric     1436             0              0
+32    32            Radio       numeric     1436             0              0
+33    33        Mistlamps       numeric     1436             0              0
+34    34      Sport_Model       numeric     1436             0              0
+35    35 Backseat_Divider       numeric     1436             0              0
+36    36     Metallic_Rim       numeric     1436             0              0
+37    37   Radio_cassette       numeric     1436             0              0
+38    38          Tow_Bar       numeric     1436             0              0
+   No_of_distinct_values
+1                   1436
+2                    372
+3                    236
+4                     77
+5                     12
+6                      7
+7                   1263
+8                     13
+9                     59
+10                     9
+11                     3
+12                     3
+13                     4
+14                     4
+15                     1
+16                     3
+17                    10
+18                     2
+19                     2
+20                     2
+21                     2
+22                     2
+23                     2
+24                     2
+25                     2
+26                     2
+27                     2
+28                     2
+29                     2
+30                     2
+31                     2
+32                     2
+33                     2
+34                     2
+35                     2
+36                     2
+37                     2
+38                     2</code></pre>
 </div>
 </div>
 
