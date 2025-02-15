@@ -529,6 +529,85 @@ $ Tow_Bar          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 38                     2</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mfg_Month"</span>, <span class="st">"HP_Bin"</span>, <span class="st">"CC_bin"</span>, <span class="st">"Doors"</span>, <span class="st">"Gears"</span>, <span class="st">"Cylinders"</span>, <span class="st">"Fuel_Type"</span>, <span class="st">"Color"</span>, <span class="st">"ABS"</span>, <span class="st">"Airbag_1"</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Met_Color"</span>, <span class="st">"Automatic"</span>, <span class="st">"Mfr_Guarantee"</span>, <span class="st">"BOVAG_Guarantee"</span>, <span class="st">"CD_Player"</span>, <span class="st">"Airbag_2"</span>, <span class="st">"Airco"</span>, <span class="st">"Automatic_airco"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Boardcomputer"</span>, <span class="st">"Mistlamps"</span>, <span class="st">"Central_Lock"</span>, <span class="st">"Powered_Windows"</span>, <span class="st">"Power_Steering"</span>, <span class="st">"Radio"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Sport_Model"</span>, <span class="st">"Backseat_Divider"</span>, <span class="st">"Metallic_Rim"</span>, <span class="st">"Radio_cassette"</span>, <span class="st">"Tow_Bar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>car_resale <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"data/ToyotaCorolla.xls"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">"data"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Id =</span> <span class="fu">as.character</span>(Id)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(cols), as.factor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>car_resale</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,436 × 38
+   Id    Model    Price Age_08_04 Mfg_Month Mfg_Year     KM Quarterly_Tax Weight
+   &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+ 1 81    TOYOTA … 18950        25 8             2002  20019           100   1180
+ 2 1     TOYOTA … 13500        23 10            2002  46986           210   1165
+ 3 2     TOYOTA … 13750        23 10            2002  72937           210   1165
+ 4 3     &nbsp;TOYOTA… 13950        24 9             2002  41711           210   1165
+ 5 4     TOYOTA … 14950        26 7             2002  48000           210   1165
+ 6 5     TOYOTA … 13750        30 3             2002  38500           210   1170
+ 7 6     TOYOTA … 12950        32 1             2002  61000           210   1170
+ 8 7     &nbsp;TOYOTA… 16900        27 6             2002  94612           210   1245
+ 9 8     TOYOTA … 18600        30 3             2002  75889           210   1245
+10 44    TOYOTA … 16950        27 6             2002 110404           234   1255
+# ℹ 1,426 more rows
+# ℹ 29 more variables: Guarantee_Period &lt;dbl&gt;, HP_Bin &lt;fct&gt;, CC_bin &lt;fct&gt;,
+#   Doors &lt;fct&gt;, Gears &lt;fct&gt;, Cylinders &lt;fct&gt;, Fuel_Type &lt;fct&gt;, Color &lt;fct&gt;,
+#   Met_Color &lt;fct&gt;, Automatic &lt;fct&gt;, Mfr_Guarantee &lt;fct&gt;,
+#   BOVAG_Guarantee &lt;fct&gt;, ABS &lt;fct&gt;, Airbag_1 &lt;fct&gt;, Airbag_2 &lt;fct&gt;,
+#   Airco &lt;fct&gt;, Automatic_airco &lt;fct&gt;, Boardcomputer &lt;fct&gt;, CD_Player &lt;fct&gt;,
+#   Central_Lock &lt;fct&gt;, Powered_Windows &lt;fct&gt;, Power_Steering &lt;fct&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>car_resale <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ExpNumViz</span>(<span class="at">target =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">nlim =</span> <span class="dv">10</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Page =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`0`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="In-Class_Ex05_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="In-Class_Ex05_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>car_resale <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ExpNumViz</span>(<span class="at">target=</span><span class="st">"Price"</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">nlim=</span><span class="dv">10</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Page=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`0`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="In-Class_Ex05_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
