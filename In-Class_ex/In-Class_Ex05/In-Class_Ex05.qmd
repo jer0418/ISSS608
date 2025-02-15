@@ -1,0 +1,35 @@
+---
+title: "In-Class_Ex05"
+---
+
+## Importing library
+
+```{r}
+#| warning: false
+pacman::p_load(tidyverse, readxl, SmartEDA, easystats, gtsummary)
+```
+
+## Data import
+
+```{r}
+car_resale <- read_xls("data/ToyotaCorolla.xls","data")
+```
+
+```{r}
+list(car_resale)
+```
+
+```{r}
+glimpse(car_resale)
+```
+
+```{r}
+summary(car_resale)
+```
+
+## Data Overview
+
+```{r}
+car_resale %>%
+  ExpData(type = 1)
+```
