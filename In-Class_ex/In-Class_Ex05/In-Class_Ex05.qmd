@@ -6,7 +6,7 @@ title: "In-Class_Ex05"
 
 ```{r}
 #| warning: false
-pacman::p_load(tidyverse, readxl, SmartEDA, easystats, gtsummary)
+pacman::p_load(tidyverse, readxl, SmartEDA, easystats, gtsummary,ggstatsplot)
 ```
 
 ## Data import
@@ -77,7 +77,7 @@ car_resale %>%
             Page=c(2,2))
 ```
 
-```{r fig-width=12, fig-height=10}
+```{r fig.width=12, fig.height=10}
 
 car_resale %>%
   ExpCatViz(target=NULL,
