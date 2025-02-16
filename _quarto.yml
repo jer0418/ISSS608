@@ -70,7 +70,7 @@ website:
 
 format:
   html:
-    theme: Sketchy
+    theme: Minty
     css: styles.css
     toc: true
     execute:

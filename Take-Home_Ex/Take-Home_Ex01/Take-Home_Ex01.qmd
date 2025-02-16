@@ -24,17 +24,25 @@ This dataset offers an in-depth exploration of heart attack incidents in Japan, 
 
 First, write a code chunk to check, install and launch the following R packages:
 
+-   [corrplot](https://cran.r-project.org/web/packages/corrplot/index.html "https://cran.r-project.org/web/packages/corrplot/index.html"): a graphical display of a correlation matrix
+
+<!-- -->
+
 -   [ggiraph](https://davidgohel.github.io/ggiraph/) for making ‘ggplot’ graphics interactive.
 
--   ggplot2,
+-   [ggplot2](https://ggplot2.tidyverse.org/): A system for declaratively creating graphics, based on the grammar of graphics.
 
 -   [tidyverse](https://www.tidyverse.org/), a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs.
 
 -   [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/), Extra themes, geoms, and scales for ggplot2.
 
--   [patchwork](https://patchwork.data-imaginist.com/) for combining multiple ggplot2 graphs into one figure.
+-   [patchwork](https://patchwork.data-imaginist.com/) for combining multiple [ggplot2](https://ggplot2.tidyverse.org/) graphs into one figure.
 
 -   [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/index.html) is an extension of [ggplot2](https://ggplot2.tidyverse.org/) package for creating graphics with details from statistical tests included in the information-rich plots themselves
+
+-   [plotly](https://github.com/plotly/plotly.R "https://github.com/plotly/plotly.R"): Create interactive web-based plots using [ggplot2](https://ggplot2.tidyverse.org/) and more
+
+-   [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html "https://cran.r-project.org/web/packages/dplyr/index.html"): A grammar of data manipulation
 
 The code chunk below will be used to accomplish the task.
 
@@ -300,7 +308,7 @@ interactive_stress_boxplot
 
 ```
 
-Next step would be grouping stress level into few groups such as low, moderate, high and very high
+**Next step** would be grouping stress level into few groups such as low, moderate, high and very high and see the rate of heart attack occurrence rate. We would be using Heat-map to do check.
 
 ```{r}
 stress_attack_rate <- japan_cleaned %>%
@@ -332,7 +340,9 @@ interactive_stress_attack_heatmap
 ::: callout-note
 **Findings**:
 
-This heatmap illustrates the heart attack rate across different stress levels. Darker colors indicate a higher heart attack rate, while lighter colors represent a lower rate. The chart shows that individuals in the Low stress group have the highest heart attack rate, while the rate gradually decreases as stress levels increase. This suggests that, in this dataset, people with lower stress levels may actually have a higher incidence of heart attacks.
+This heatmap illustrates the heart attack rate across different stress levels. Darker colors indicate a higher heart attack rate, while lighter colors represent a lower rate.
+
+The chart shows that individuals in the Low stress group have the highest heart attack rate, while the rate gradually decreases as stress levels increase. This suggests that, in this dataset, people with lower stress levels may actually have a higher incidence of heart attacks.
 :::
 
 ### EDA 5: Heart Attack Occurrence Across Heart_rate
@@ -368,11 +378,11 @@ ggplot(japan_cleaned, aes(x = Heart_Rate, fill = Heart_Attack_Occurrence, color 
 ::: callout-note
 **Findings:**
 
-This heart rate density distribution plot compares individuals who experienced a heart attack versus those who did not based on their heart rate distribution. Both groups exhibit a unimodal distribution, with most heart rates concentrated between 60 and 80, but some notable trends emerge.
+This heart rate density distribution plot compares individuals who experienced a heart attack versus those who did not based on their heart rate distribution. Both groups exhibit a unimodal distribution, with most heart rates concentrated between 60 and 80.
 
-In the lower heart rate range (50-60), the No group is significantly larger than the Yes group, suggesting that heart attack occurrence is lower among individuals with lower heart rates. However, a lower heart rate does not necessarily indicate better health, as factors like physical activity, lifestyle, or other health conditions may play a role.
+In the lower heart rate range (50-60), the No group is significantly larger than the Yes group, suggesting that heart attack occurrence is lower among individuals with lower heart rates.
 
-Conversely, in the higher heart rate range (above 80), the Yes group becomes more prevalent, indicating that higher heart rates may be associated with an increased risk of heart attacks. While the difference is not extreme, this trend warrants further investigation to determine if heart rate is a significant predictor.
+Conversely, in the higher heart rate range (above 80), the Yes group becomes more prevalent, indicating that higher heart rates may be associated with an increased risk of heart attacks.
 :::
 
 ### EDA 6: Heart Attack Occurrence Across alcohol_consumption
@@ -391,7 +401,7 @@ eda6 <- japan_cleaned %>%
     Diabetes_History = ifelse(Diabetes_History == "No", 0, 1),
     Family_History = ifelse(Family_History == "No", 0, 1)
   ) %>%
-  select(-Gender)  # 彻底删除 Gender 变量
+  select(-Gender)
 
 logit_model <- glm(Heart_Attack_Occurrence ~ . - Age - Cholesterol_Level - Stress_Levels - Heart_Rate - Alcohol_Consumption, 
                    data = eda6, 
@@ -401,22 +411,32 @@ ggcoefstats(logit_model, palette = "Dark2")
 
 ```
 
-This plot above presents the results of a logistic regression model, analyzing various health factors and their influence on heart attack occurrence. The X-axis represents the estimated coefficients (estimate), indicating the direction and magnitude of each variable's effect on heart attack risk, while the p-values inside the bubbles reflect their statistical significance.
+This plot above presents the results of a logistic regression model, analyzing various health factors and their influence on heart attack occurrence. The X-axis represents the estimated coefficients, indicating the direction and magnitude of each variable's effect on heart attack risk, while the p-values inside the bubbles reflect their statistical significance.
 
-From the regression results, none of the variables exhibit a p-value below 0.05, meaning that in this dataset, these factors do not demonstrate statistically significant effects for heart attack occurrence.
+From the regression results, basically there are none of the variable's p-value is below 0.05. This indicating that these factors is statistically insignificant on heart attack occurrence.
 
-However, this does not imply that these factors are irrelevant in medical research. Their lack of significance in this model may be due to sample size limitations, data quality, or the influence of interactions between variables.
+However, this does not imply that these factors are irrelevant in medical research. The lack of significance in this model may be caused by the limited small propotion of the sample size, data quality, or the influence of interactions between variables.
 
 ## Conclusion
 
 This analysis explored various factors influencing heart attack occurrence using data visualization and logistic regression. While some trends were observed, most factors did not show strong statistical significance in predicting heart attacks. Further research with a larger dataset, interaction effects, and additional health indicators may improve the model’s predictive power and provide deeper insights into heart attack risk factors.
 
+**Factors that might increase the chance of getting heart attack:**
+
+-   **Age**: The highest heart attack occurrence is observed between ages 30-40, with a consistently high rate from 40-80, suggesting that middle-aged and older individuals are at higher risk.
+
+<!-- -->
+
+-   **Cholesterol Level**: The heart attack rate increases with higher cholesterol levels, with the "Very High" group showing the highest risk, indicating that high cholesterol is a significant risk factor.
+
+-   **Stress Levels**: Interestingly, individuals with low stress levels have the highest heart attack rate, though this trend may be influenced by other health factors, requiring further investigation.
+
+-   **Heart Rate**: The "Yes" group is more prevalent in the higher heart rate range (above 80), suggesting a potential association between high heart rate and heart attack risk.
+
 ### Future Research Directions
 
 1.  Increasing the sample size to improve statistical power and identify potential influencing factors.
 
-2.  Exploring interactions between variables, such as whether diabetes and hypertension together have a stronger effect than either factor alone.
+2.  Increase other factors that might cause heart attack.
 
-3.  Incorporating a time dimension, analyzing how long-term lifestyle habits (e.g., exercise, diet) impact heart attack risk.
-
-This analysis suggests that using these variables in isolation may not be sufficient for accurately predicting heart attack occurrence. However, they could still play an important role in more complex multi-factor predictive models in future research.
+This projects has some very interesting findings however, using these variables alone may not be sufficient for accurately predicting heart attack occurrence. More samples and analysis needs to be conducted before understanding what truely affects heart attack occurrence. Even though it is not 100% correct but they could still play an important role in more complex multi-factor predictive models in future research.
