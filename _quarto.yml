@@ -45,6 +45,9 @@ website:
           
           - text: "Hands-on Exercise 5e" 
             href: "Hands-on_ex/Hands-on_Ex05e/Hands-on_Ex05e.html"
+            
+          - text: "Hands-on Exercise 6" 
+            href: "Hands-on_ex/Hands-on_Ex06/Hands-on_Ex06.html"
           
             
       - text: "In-Class Exercises"
