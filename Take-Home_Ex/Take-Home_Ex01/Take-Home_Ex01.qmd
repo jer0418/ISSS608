@@ -1,0 +1,442 @@
+---
+title: "Take-home_Ex01"
+format: html
+author: "Jeremy Junpeng Liu"
+date: "February 1,2025"
+date-modified: "last-modified"
+---
+
+# Japan Heart Attack
+
+## About Dataset
+
+This dataset offers an in-depth exploration of heart attack incidents in Japan, focusing on the differences between youth and adult age groups. With the growing prevalence of cardiovascular diseases worldwide, this dataset provides critical insights into the health profiles, risk factors, and potential triggers associated with heart attacks among two distinct demographics.
+
+## Goal
+
+-   An international media company that publishes weekly content on digital platforms is planning to release articles on the following themes.
+
+-   Assuming the role of the graphical editor of the media company, i am tasked to choose one of the theme above (Japan Heart attack) and to prepare data visualisation for the article.
+
+## 1 Getting Started
+
+### 1.1 Access to library
+
+First, write a code chunk to check, install and launch the following R packages:
+
+-   [corrplot](https://cran.r-project.org/web/packages/corrplot/index.html "https://cran.r-project.org/web/packages/corrplot/index.html"): a graphical display of a correlation matrix
+
+<!-- -->
+
+-   [ggiraph](https://davidgohel.github.io/ggiraph/) for making ‘ggplot’ graphics interactive.
+
+-   [ggplot2](https://ggplot2.tidyverse.org/): A system for declaratively creating graphics, based on the grammar of graphics.
+
+-   [tidyverse](https://www.tidyverse.org/), a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs.
+
+-   [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/), Extra themes, geoms, and scales for ggplot2.
+
+-   [patchwork](https://patchwork.data-imaginist.com/) for combining multiple [ggplot2](https://ggplot2.tidyverse.org/) graphs into one figure.
+
+-   [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/index.html) is an extension of [ggplot2](https://ggplot2.tidyverse.org/) package for creating graphics with details from statistical tests included in the information-rich plots themselves
+
+-   [plotly](https://github.com/plotly/plotly.R "https://github.com/plotly/plotly.R"): Create interactive web-based plots using [ggplot2](https://ggplot2.tidyverse.org/) and more
+
+-   [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html "https://cran.r-project.org/web/packages/dplyr/index.html"): A grammar of data manipulation
+
+The code chunk below will be used to accomplish the task.
+
+```{r}
+#| warning: false
+pacman::p_load(corrplot, ggiraph, ggplot2, tidyverse, ggthemes, patchwork, ggstatsplot, plotly, dplyr)
+```
+
+### 1.2 Importing the Dataset
+
+First by importing the Japan_heart_attack_data set.csv to "Japan"
+
+Using the read.csv(path) would allow me to do so.
+
+```{r}
+japan <- read.csv("data/japan_heart_attack_dataset.csv")
+```
+
+### 1.3 Understand our data
+
+In order to Understand our data, we would need to check what are the column's title and how many rows we have. To view the data's information we can use *glimpse(data*) and *summary(data)* to do so.
+
+::: panel-tabset
+#### Step 1. Use glimpse to understand the data and data cleaning
+
+```{r}
+glimpse(japan)
+```
+
+-   From the above summary we can see that there are 30,000 rows and 32 columns forthis data. Noticing there are columns that don't have direct meaning, we would be removing those "Extra_Column_1" to "Extra_Column_15" columns.
+
+```{r}
+japan_cleaned <- japan %>% select(-c(Extra_Column_1, Extra_Column_2, Extra_Column_3, Extra_Column_4, Extra_Column_5, 
+                        Extra_Column_6, Extra_Column_7, Extra_Column_8, Extra_Column_9, Extra_Column_10, 
+                        Extra_Column_11, Extra_Column_12, Extra_Column_13, Extra_Column_14, Extra_Column_15))
+
+```
+
+#### Step 2. Check for duplicates
+
+Using the `duplicated` function, we see that there are no duplicate entries in the data.
+
+```{r}
+japan_cleaned[duplicated(japan_cleaned)]
+
+```
+
+This indicates that there are no duplicate entries.
+
+#### Step 3. Check for Missing Values
+
+Using the code "colSums(*is.na())"* can help us see if there are missing values.
+
+```{r}
+colSums(is.na(japan_cleaned))
+
+```
+
+There aren't any missing values within this data therefore we can directly go into Exploratory Data Analysis.
+:::
+
+## 2 Exploratory Data Analysis
+
+### EDA 1: Distribution of Heart_Attack_Occurrence.
+
+In this EDA, we would be looking through the distribution of heart attack occurrence since this is the dependent variable in this task.
+
+The column "Heart_Attack_Occurrence" is a binary categorical variable(Yes/No). Therefore the best chart to use would be a Bar Chart if we want to show the distribution.
+
+```{r}
+heart_attack_bar_plot <- ggplot(japan_cleaned, aes(x = Heart_Attack_Occurrence, fill = Heart_Attack_Occurrence)) +
+  geom_bar() +
+  labs(title = "Distribution of Heart Attack Occurrence",
+       x = "Heart Attack Occurrence",
+       y = "Number of People") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#E63946", "#457B9D"))
+
+interactive_heart_attack_bar <- ggplotly(heart_attack_bar_plot)
+
+interactive_heart_attack_bar
+```
+
+The distribution of heart_attack_occurrence is shown from the above figure. There are in total 30,000 roles within the data set representing number of people. From the above figure, we can see the exact number of each column if we move our mouse on to it.
+
+-   Number of No Heart Attack occurrence: 27036
+
+-   Number of Heart Attack occurrence: 2964
+
+::: callout-note
+Findings:
+
+-   Imbalance dataset
+
+-   smaller proportion of "yes" group
+:::
+
+### EDA 2: Heart Attack Occurrence Across Different Age Groups
+
+EDA 2 would mostly focus on the heart attack occurrence across different age groups. Age could be one of the factors influencing the change of getting heart attack, therefore understanding the trend of heart attack based on age groups is important\
+
+```{r}
+age_heart_attack <- japan_cleaned %>%
+  filter(Heart_Attack_Occurrence == "Yes") %>%  
+  group_by(Age) %>%
+  summarise(Count = n())
+
+p <- ggplot(age_heart_attack, aes(x = Age, y = Count)) +
+  geom_line(color = "#E63946", size = 1) +  # Red line for actual data
+  geom_point(color = "#E63946", size = 2) +  # Red points
+  geom_smooth(method = "loess", color = "#457B9D", fill = "#BFD7ED", se = TRUE, size = 1) +  # Smooth trend line
+  labs(title = "Interactive Heart Attack Occurrence by Age with Trend",
+       x = "Age",
+       y = "Number of Heart Attacks") +
+  theme_minimal()
+
+interactive_Age_plot <- ggplotly(p)
+
+interactive_Age_plot
+
+```
+
+From the above graph, the red dot represents different age group's heart attack number. The blue line represents a smooth trend line to observe the overall pattern.
+
+However, the dots are too many and hard to tell a strong trend therefore we then groups the age by every 10 years. In that case the red dots would be less and hopefully we can see a strong trend.
+
+To do so,
+
+-   Step1: we first need to filter out the person with heart attack.
+
+-   Step2: we need to cut the age group by 10 years
+
+-   Step3: Count all the number of 'Yes' in each group range
+
+-   Step4: Plot the line
+
+[The following code would help us achieve those 4 steps:]{.underline}
+
+```{r}
+age_heart_attack_data <- japan_cleaned %>%
+  filter(Heart_Attack_Occurrence == "Yes") %>%
+  mutate(Age_Group = cut(Age, breaks = seq(10, 80, by = 10), include.lowest = TRUE)) %>%
+  group_by(Age_Group) %>%
+  summarise(Count = n(), .groups = "drop")
+
+age_heart_attack_plot <- ggplot(age_heart_attack_data, aes(x = Age_Group, y = Count, group = 1)) +
+  geom_line(color = "#E63946", size = 1) +
+  geom_point(color = "#E63946", size = 3) +
+  geom_smooth(method = "loess", color = "#457B9D", se = FALSE, size = 1) +
+  
+  labs(title = "Heart Attack Occurrence by Age Group (10-year intervals)",
+       x = "Age Group",
+       y = "Number of Heart Attacks") +
+  theme_minimal()
+
+interactive_age_heart_attack <- ggplotly(age_heart_attack_plot)
+
+interactive_age_heart_attack
+
+```
+
+::: callout-note
+Findings:
+
+-   The trend line from age 10 to age 40 demonstrated a very strong increase indicating that the percentage of getting a heart attack could increase before reaching 40s.
+
+-   The highest number of heart attack appears between age 30 to 40 therefore suggesting that middle aged individuals could have a higher chance of getting heart attacks.
+
+-   Staple trend line between age 40 to 80 representing the chance of getting heart attack between old age are still relatively high.
+:::
+
+### EDA 3: Heart Attack Occurrence Across Cholesterol_Level
+
+This EDA focus on the number of heart attack occurrence on different range group for cholesterol level. To do this analysis, we first need to see the range for cholesterol level.
+
+```{r}
+cholesterol_violin_plot <- ggplot(japan_cleaned, aes(x = "", y = Cholesterol_Level)) +
+  geom_violin(fill = "#A8DADC", color = "black", alpha = 0.7) +
+  geom_boxplot(width = 0.1, fill = "white", color = "black", alpha = 0.5) +
+  labs(title = "Interactive Violin Plot of Cholesterol Levels",
+       x = "",
+       y = "Cholesterol Level") +
+  theme_minimal()
+
+interactive_cholesterol_violin <- ggplotly(cholesterol_violin_plot)
+
+interactive_cholesterol_violin
+```
+
+The above violin plot demonstrates the overall summary for individual's cholesterol levels. The Max number is 336.86 and the min is 80.02. This indicates that the range is very high. Median is 199.77 with Q1 and Q3 179 and 220. From the information provided we can separate them into 5 groups:
+
+-   \<180 : Low
+
+-   180 - 200 : Normal
+
+-   200 - 220 : Medium high
+
+-   220 - 250 : High
+
+-   \>= 250 : Very High
+
+```{r}
+cholesterol_attack_rate <- japan_cleaned %>%
+  mutate(Cholesterol_Group = cut(Cholesterol_Level, 
+                                 breaks = c(0, 180, 200, 220, 250, Inf),  
+                                 labels = c("Low", "Normal", "Medium_High", "High", "Very High"),
+                                 include.lowest = TRUE)) %>%
+  group_by(Cholesterol_Group) %>%
+  summarise(Total_Count = n(),
+            Heart_Attack_Count = sum(Heart_Attack_Occurrence == "Yes"),
+            Heart_Attack_Rate = (Heart_Attack_Count / Total_Count) * 100,
+            .groups = "drop")
+
+
+interactive_plot <- ggplotly(
+  ggplot(cholesterol_attack_rate, aes(x = Cholesterol_Group, y = Heart_Attack_Rate, group = 1)) +
+    geom_line(color = "#F00000", size = 1) +
+    geom_point(color = "#F00000", size = 3) +
+    geom_smooth(method = "loess", color = "#0000FF", se = FALSE, size = 1) +  
+    
+    labs(title = "Heart Attack Rate Across Cholesterol Groups",
+         x = "Cholesterol Group",
+         y = "Heart Attack Rate (%)") +
+    theme_minimal()
+)
+
+interactive_plot
+
+
+
+
+```
+
+The above graph has shown the heart attack rate based on different cholesterol groups. The code first calculated the total number of people within each cholesterol groups and afterwards calculated the probability of people getting heart attack within that group. This is done because we want to know the percentage of getting heart attack in each group, however, we can't make sure each group has the equal amount of individuals. By calculating how many heart attack percent does each group has would be more actuate.
+
+::: callout-note
+Findings:
+
+-   Number of heart attack trends to have a strong relation with cholesterol level based on the interactive plot.
+
+-   Highest number of heart attacks has appeared on Very high cholesterol level.
+:::
+
+### EDA 4: Heart Attack Occurrence Across Stress_level
+
+This EDA focuses exploring the relationship between Heart Attack occurrence rate and Stress_Level.
+
+We would be using the same steps earlier. First, we would need to group out the stress_level into different groups, therefore, Box plot has been applied.
+
+```{r}
+stress_boxplot <- ggplot(japan_cleaned, aes(x = "", y = Stress_Levels)) +
+  geom_boxplot(fill = "#A8DADC", color = "black", alpha = 0.7) +
+  labs(title = "Boxplot of Stress Levels",
+       x = "",
+       y = "Stress Level") +
+  theme_minimal()
+
+interactive_stress_boxplot <- ggplotly(stress_boxplot)
+
+interactive_stress_boxplot
+
+
+
+```
+
+**Next step** would be grouping stress level into few groups such as low, moderate, high and very high and see the rate of heart attack occurrence rate. We would be using Heat-map to do check.
+
+```{r}
+stress_attack_rate <- japan_cleaned %>%
+  mutate(Stress_Group = cut(Stress_Levels, 
+                            breaks = c(0, 3.5, 5.5, 7.5, 10),  
+                            labels = c("Low", "Moderate", "High", "Very High"),
+                            include.lowest = TRUE)) %>%
+  group_by(Stress_Group) %>%
+  summarise(Total_Count = n(),  
+            Heart_Attack_Count = sum(Heart_Attack_Occurrence == "Yes"),  
+            Heart_Attack_Rate = (Heart_Attack_Count / Total_Count) * 100,  
+            .groups = "drop")
+
+stress_attack_heatmap <- ggplot(stress_attack_rate, aes(x = Stress_Group, y = "", fill = Heart_Attack_Rate)) +
+  geom_tile() +
+  scale_fill_gradient(low = "#FFD7D7", high = "#F00000") +
+  labs(title = "Heatmap of Heart Attack Rate by Stress Level",
+       x = "Stress Level",
+       y = "",
+       fill = "Heart Attack Rate (%)") +
+  theme_minimal()
+ 
+interactive_stress_attack_heatmap <- ggplotly(stress_attack_heatmap)
+
+interactive_stress_attack_heatmap
+
+```
+
+::: callout-note
+**Findings**:
+
+This heatmap illustrates the heart attack rate across different stress levels. Darker colors indicate a higher heart attack rate, while lighter colors represent a lower rate.
+
+The chart shows that individuals in the Low stress group have the highest heart attack rate, while the rate gradually decreases as stress levels increase. This suggests that, in this dataset, people with lower stress levels may actually have a higher incidence of heart attacks.
+:::
+
+### EDA 5: Heart Attack Occurrence Across Heart_rate
+
+```{r}
+heart_rate_histogram <- ggplot(japan_cleaned, aes(x = Heart_Rate)) +
+  geom_histogram(bins = 30, fill = "#FF9200", color = "black", alpha = 0.8) +
+  labs(title = "Histogram of Heart Rate",
+       x = "Heart Rate",
+       y = "Count") +
+  theme_minimal()
+
+interactive_Heart_rate_plot <-ggplotly(heart_rate_histogram)
+interactive_Heart_rate_plot
+
+
+```
+
+```{r}
+ggplot(japan_cleaned, aes(x = Heart_Rate, fill = Heart_Attack_Occurrence, color = Heart_Attack_Occurrence)) +
+  geom_density(alpha = 0.4, size = 1) +  
+  labs(title = "Density Distribution of Heart Rate by Heart Attack Occurrence",
+       x = "Heart Rate",
+       y = "Density") +
+  scale_fill_manual(values = c("No" = "#457B9D", "Yes" = "#E63946")) + 
+  scale_color_manual(values = c("No" = "#1D3557", "Yes" = "#D62828")) +
+  theme_minimal()
+
+
+
+```
+
+::: callout-note
+**Findings:**
+
+This heart rate density distribution plot compares individuals who experienced a heart attack versus those who did not based on their heart rate distribution. Both groups exhibit a unimodal distribution, with most heart rates concentrated between 60 and 80.
+
+In the lower heart rate range (50-60), the No group is significantly larger than the Yes group, suggesting that heart attack occurrence is lower among individuals with lower heart rates.
+
+Conversely, in the higher heart rate range (above 80), the Yes group becomes more prevalent, indicating that higher heart rates may be associated with an increased risk of heart attacks.
+:::
+
+### EDA 6: Heart Attack Occurrence Across alcohol_consumption
+
+After exploring some of the factor's relation with heart attack occurrence, it is time for us to check what are some possible factors that can be analyzed in the future. By applying logistic regression model, we can determine their statistical significant level.
+
+```{r}
+eda6 <- japan_cleaned %>%
+  mutate(
+    Heart_Attack_Occurrence = ifelse(Heart_Attack_Occurrence == "No", 0, 1),
+    Alcohol_Consumption = ifelse(Alcohol_Consumption == "None", 0, 1),
+    Diet_Quality = ifelse(Diet_Quality == "Poor", 0, 1),
+    Physical_Activity = ifelse(Physical_Activity == "Low", 0, 1),
+    Smoking_History = ifelse(Smoking_History == "No", 0, 1),
+    Hypertension_History = ifelse(Hypertension_History == "No", 0, 1),
+    Diabetes_History = ifelse(Diabetes_History == "No", 0, 1),
+    Family_History = ifelse(Family_History == "No", 0, 1)
+  ) %>%
+  select(-Gender)
+
+logit_model <- glm(Heart_Attack_Occurrence ~ . - Age - Cholesterol_Level - Stress_Levels - Heart_Rate - Alcohol_Consumption, 
+                   data = eda6, 
+                   family = binomial)
+
+ggcoefstats(logit_model, palette = "Dark2")
+
+```
+
+This plot above presents the results of a logistic regression model, analyzing various health factors and their influence on heart attack occurrence. The X-axis represents the estimated coefficients, indicating the direction and magnitude of each variable's effect on heart attack risk, while the p-values inside the bubbles reflect their statistical significance.
+
+From the regression results, basically there are none of the variable's p-value is below 0.05. This indicating that these factors is statistically insignificant on heart attack occurrence.
+
+However, this does not imply that these factors are irrelevant in medical research. The lack of significance in this model may be caused by the limited small propotion of the sample size, data quality, or the influence of interactions between variables.
+
+## Conclusion
+
+This analysis explored various factors influencing heart attack occurrence using data visualization and logistic regression. While some trends were observed, most factors did not show strong statistical significance in predicting heart attacks. Further research with a larger dataset, interaction effects, and additional health indicators may improve the model’s predictive power and provide deeper insights into heart attack risk factors.
+
+**Factors that might increase the chance of getting heart attack:**
+
+-   **Age**: The highest heart attack occurrence is observed between ages 30-40, with a consistently high rate from 40-80, suggesting that middle-aged and older individuals are at higher risk.
+
+<!-- -->
+
+-   **Cholesterol Level**: The heart attack rate increases with higher cholesterol levels, with the "Very High" group showing the highest risk, indicating that high cholesterol is a significant risk factor.
+
+-   **Stress Levels**: Interestingly, individuals with low stress levels have the highest heart attack rate, though this trend may be influenced by other health factors, requiring further investigation.
+
+-   **Heart Rate**: The "Yes" group is more prevalent in the higher heart rate range (above 80), suggesting a potential association between high heart rate and heart attack risk.
+
+### Future Research Directions
+
+1.  Increasing the sample size to improve statistical power and identify potential influencing factors.
+
+2.  Increase other factors that might cause heart attack.
+
+This projects has some very interesting findings however, using these variables alone may not be sufficient for accurately predicting heart attack occurrence. More samples and analysis needs to be conducted before understanding what truely affects heart attack occurrence. Even though it is not 100% correct but they could still play an important role in more complex multi-factor predictive models in future research.
