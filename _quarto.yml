@@ -36,7 +36,7 @@ website:
             
           - text: "Hands-on Exercise 5b" 
             href: "Hands-on_ex/Hands-on_Ex05b/Hands-on_Ex05b.html"
-            
+          
           - text: "Hands-on Exercise 5c" 
             href: "Hands-on_ex/Hands-on_Ex05c/Hands-on_Ex05c.html"
             
@@ -75,6 +75,7 @@ website:
     right:
       - href: index.qmd
         text: Home
+        
       - about.qmd
 
 format:
@@ -82,7 +83,5 @@ format:
     theme: Minty
     css: styles.css
     toc: true
-    execute:
-      warning: false
 
 editor: visual
