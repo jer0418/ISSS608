@@ -437,4 +437,4 @@ The dataset was first filtered to select only China's data. A new variable, Type
 
 ## Conclusion
 
-The analysis explored time-series data through visualization, decomposition, and initial forecasting. Multiple time series were plotted to observe trends, and single series decomposition helped identify patterns. While forecasting was introduced, a detailed seasonality analysis was not conducted. Further steps could include deeper seasonal pattern exploration for better insights.
+This analysis explored time-series data through visualization, decomposition, and initial forecasting. Multiple time series were plotted to observe trends, and single series decomposition helped identify patterns. While forecasting was introduced, a detailed seasonality analysis was not conducted. Further steps could include deeper seasonal pattern exploration for better insights.
