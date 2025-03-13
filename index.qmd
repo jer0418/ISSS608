@@ -2,4 +2,4 @@
 title: "Index"
 ---
 
-HI
+Hi, This is JEREMY JUNPENG LIU's ISSS608 Visual Analysis Hands-on, Takehome and inclass place;D
