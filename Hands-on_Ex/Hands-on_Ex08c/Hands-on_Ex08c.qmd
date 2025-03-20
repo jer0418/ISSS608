@@ -69,7 +69,7 @@ tmap_arrange(p2, p1, nrow = 1)
 
 In much of our readings we have now seen the importance to map rates rather than counts of things, and that is for the simple reason that water points are not equally distributed in space. That means that if we do not account for how many water points are somewhere, we end up mapping total water point size rather than our topic of interest.
 
-###  **Deriving Proportion of Functional Water Points and Non-Functional Water Points**
+### **Deriving Proportion of Functional Water Points and Non-Functional Water Points**
 
 We will tabulate the proportion of functional water points and the proportion of non-functional water points in each LGA. In the following code chunk, `mutate(`) from **dplyr** package is used to derive two fields, namely *pct_functional* and *pct_nonfunctional*.
 
@@ -203,7 +203,7 @@ ggplot(data = NGA_wp,
 
 -   To create a box map, a custom breaks specification will be used. However, there is a complication. The break points for the box map vary depending on whether lower or upper outliers are present.
 
-####  Creating the boxbreaks function
+#### Creating the boxbreaks function
 
 The code chunk below is an R function that creating break points for a box map.
 
