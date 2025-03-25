@@ -181,7 +181,7 @@ GAStech_graph
 
 -   It states that the Node Data is **active**. The notion of an active tibble within a tbl_graph object makes it possible to manipulate the data in one tibble at a time.
 
-###  **Changing the active object**
+### **Changing the active object**
 
 The nodes tibble data frame is activated by default, but you can change which tibble data frame is active with the *activate()* function. Thus, if we wanted to rearrange the rows in the edges tibble to list those with the highest “weight” first, we could use *activate()* and then *arrange()*.
 
@@ -350,7 +350,7 @@ g <- ggraph(GAStech_graph,
 g + facet_edges(~Weekday)
 ```
 
-###  **A framed facet graph**
+### **A framed facet graph**
 
 ```{r}
 set_graph_style() 
