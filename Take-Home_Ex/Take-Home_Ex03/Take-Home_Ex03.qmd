@@ -1,5 +1,5 @@
 ---
-title: "Take-Home_Ex03 - Time Series Analysis"
+title: "Take-Home_Ex03_Time Series Analysis"
 ---
 
 # **Time Series Analysis**
