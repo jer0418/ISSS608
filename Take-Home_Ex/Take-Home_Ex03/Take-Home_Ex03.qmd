@@ -34,19 +34,15 @@ pacman::p_load(tidyverse, lubridate, tsibble, feasts, fable, ggridges)
 
 First, `read_csv()` of **readr** package is used to import *visitor_arrivals_by_air.csv* file into R environment. The imported file is saved an tibble object called *ts_data*.
 
-```{r}
-thai_data <- read_csv(
-  "data/thai_road_accident_2019_2022.csv",show_col_types = FALSE)
-```
-
 In the code chunk below, `ymd()` of **lubridate** package is used to convert data type of incident_datetime field from Character to Date and thus to year-month-day.
 
 ```{r}
-thai_data <- thai_data %>%
+thai_data <- read_csv("data/thai_road_accident_2019_2022.csv", show_col_types = FALSE) %>%
   mutate(
-    incident_datetime = ymd(incident_datetime),
+    incident_datetime = parse_date_time(incident_datetime, orders = c("ymd HMS", "ymd HM", "ymd")),
     Date = as_date(incident_datetime)
-  )
+  ) %>%
+  filter(!is.na(Date))
 ```
 
 ### **2.3 Conventional base `ts` object versus `tibble` object**
